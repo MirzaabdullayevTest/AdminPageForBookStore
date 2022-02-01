@@ -1,0 +1,27 @@
+// Admin Panel
+
+============> Express Generator build project
+============> MongoDB connect
+
+
+============> Client pages
+=> Index home page api -> '/'
+
+============> Admin pages
+=> Admin page api -> '/admin'
+=> Product add page api -> '/admin/
+
+============> Auth 
+=> Login password 
+
+============> Category and Product pages
+
+// ============>
+1) Connect Express generator
+2) // Reconnect hbs 
+3) Connect MongoDB
+4) Connect Mongoose
+5) Form in index page
+6) Create model
+7) Create POST method and save to DB
+8) Create GET method and read data
