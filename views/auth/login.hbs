@@ -9,17 +9,22 @@
                             <h3 class="mb-0 text-center text-white">Sign in</h3>
                             <p class="text-center text-white">Enter your email address and password to access admin
                                 panel.</p>
+                            {{#if error}}
+                            <p class="error">{{error}}</p>
+                            {{/if}}
                             <form action="/auth/login" method="POST" class="mt-4 form-text">
+
+
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail1"
-                                        placeholder="Enter email">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control mb-0" id="email" placeholder="Enter email"
+                                        name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
+                                    <label for="password">Password</label>
                                     <a href="#" class="float-right text-white">Forgot password?</a>
-                                    <input type="password" class="form-control mb-0" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control mb-0" id="password"
+                                        placeholder="Password" name="password">
                                 </div>
 
                                 <div class="sign-info text-center">

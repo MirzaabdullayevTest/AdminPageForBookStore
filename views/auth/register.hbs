@@ -6,24 +6,28 @@
                 <div class="row m-0">
                     <div class="col-sm-12 sign-in-page-data">
                         <div class="sign-in-from bg-dark rounded">
+                            {{#if error}}
+                            <p>{{error}}</p>
+                            {{/if}}
                             <h3 class="mb-0 text-center text-white">Sign Up</h3>
                             <p class="text-center text-white">Enter your email address and password to access admin
                                 panel.</p>
-                            <form class="mt-4 form-text">
+                            <form action="/auth/register" method="POST" class="mt-4 form-text">
+
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Your Full Name</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail1"
-                                        placeholder="Your Full Name">
+                                    <label for="name">Your Full Name</label>
+                                    <input type="text" class="form-control mb-0" id="name" placeholder="Your Full Name"
+                                        name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail2">Email address</label>
-                                    <input type="email" class="form-control mb-0" id="exampleInputEmail2"
-                                        placeholder="Enter email">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control mb-0" id="email" placeholder="Enter email"
+                                        name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control mb-0" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control mb-0" id="password"
+                                        placeholder="Password" name="password">
                                 </div>
                                 <div class="sign-info text-center">
                                     <button type="submit" class="btn btn-white d-block w-100 mb-2">Sign Up</button>
