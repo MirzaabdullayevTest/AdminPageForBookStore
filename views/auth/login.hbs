@@ -9,12 +9,14 @@
                             <h3 class="mb-0 text-center text-white">Sign in</h3>
                             <p class="text-center text-white">Enter your email address and password to access admin
                                 panel.</p>
-                            {{#if error}}
-                            <p class="error">{{error}}</p>
+                            {{#if loginError}}
+                            <p class="error-msg">{{loginError}}</p>
+                            {{/if}}
+
+                            {{#if success}}
+                            <p class="success-msg">{{success}}</p>
                             {{/if}}
                             <form action="/auth/login" method="POST" class="mt-4 form-text">
-
-
                                 <div class="form-group">
                                     <label for="email">Email address</label>
                                     <input type="email" class="form-control mb-0" id="email" placeholder="Enter email"

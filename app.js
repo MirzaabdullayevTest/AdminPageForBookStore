@@ -6,11 +6,11 @@ const logger = require('morgan');
 const exhbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
+const flash = require('connect-flash')
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
 const sessionMiddleware = require('./middleware/session')
-const flash = require('connect-flash')
 const app = express();
 
 // config file
@@ -51,8 +51,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(flash())
 app.use(sessionMiddleware)
+app.use(flash())
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);

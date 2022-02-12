@@ -26,10 +26,18 @@
     background: transparent;
 }
 
-.error {
+.error-msg {
     text-align: center;
     width: 90%;
     margin: auto;
     background-color: red;
+    color: #fff;
+}
+
+.success-msg {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    background-color: green;
     color: #fff;
 }
