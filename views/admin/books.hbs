@@ -1,0 +1,120 @@
+<div class="content-page">
+    <h1>{{title}}</h1>
+
+    {{#if books.length}}
+    <div class="books">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="iq-card">
+                        <div class="iq-card-body">
+                            <div class="row">
+                                {{#each books}}
+                                    <div class="col-sm-6 col-md-4 col-lg-3">
+                                        <div
+                                            class="iq-card iq-card-block iq-card-stretch iq-card-height search-bookcontent">
+                                            <div class="iq-card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="col-6 position-relative image-overlap-shadow">
+                                                        <a href="#!">
+                                                            <img src="{{img}}"
+                                                                alt="{{img}}" class="img-fluid rounded w-100">
+                                                        </a>
+
+                                                        <div class="view-book">
+                                                            <a href="/admin/book/{{id}}" class="btn btn-sm btn-white">View Book</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="mb-2">
+                                                            <h6 class="mb-1">
+                                                               {{name}}
+                                                            </h6>
+                                                            <p class="font-size-13 line-height mb-1">{{author}}</p>
+                                                        </div>
+
+                                                        <div class="price  d-flex align-items-center">
+                                                            <span class="pr-1 old-price">
+                                                                ${{oldPrice}}
+                                                            </span>
+
+                                                            <h6>${{price}}</h6>
+                                                        </div>
+
+                                                        <div class="iq-product-action">
+                                                            <a href="#!">
+                                                                <i class="ri-shopping-cart-2-fill text-primary"></i>
+                                                            </a>
+
+                                                            <a href="#!" class="ml-2">
+                                                                <i class="ri-heart-fill text-danger"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <h2>Book is empty</h2>
+    {{/if}}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form action="/admin/book/add" method="POST" class="mt-4 form-text">
+                    <div class="form-group">
+                        <label for="name">Book name</label>
+                        <input type="text" class="form-control mb-0" id="name" placeholder="Book name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Book price</label>
+                        <input type="number" class="form-control mb-0" id="price" placeholder="Book price" name="price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="oldPrice">Book old price</label>
+                        <input type="number" class="form-control mb-0" id="oldPrice" placeholder="Book old price"
+                            name="oldPrice">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Book author</label>
+                        <input type="text" class="form-control mb-0" id="author" placeholder="Book author"
+                            name="author">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img">Book img</label>
+                        <input type="text" class="form-control mb-0" id="img" placeholder="Book img" name="img">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoryId">Book category</label>
+                        <select class="form-control mb-3" id="categoryId" placeholder="Book category" name="categoryId">
+                            {{#if categories.length}}
+                            {{#each categories}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                            {{else}}
+                            <option value="null">Empty</option>
+                            {{/if}}
+                        </select>
+                    </div>
+
+
+
+                    <button class="btn btn-primary" type="submit">Add book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

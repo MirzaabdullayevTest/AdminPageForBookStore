@@ -1,0 +1,68 @@
+<div class="content-page">
+    <h1>{{title}}</h1>
+
+    <div class="books">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {{#if books.length}}
+                    <div class="iq-card">
+                        <div class="iq-card-body">
+                            <div class="row">
+                                {{#each books}}
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div
+                                        class="iq-card iq-card-block iq-card-stretch iq-card-height search-bookcontent">
+                                        <div class="iq-card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-6 position-relative image-overlap-shadow">
+                                                    <a href="#!">
+                                                        <img src="{{img}}" alt="" class="img-fluid rounded w-100">
+                                                    </a>
+
+                                                    <div class="view-book">
+                                                        <a href="#!" class="btn btn-sm btn-white">View Book</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <h6 class="mb-1">
+                                                            {{name}}
+                                                        </h6>
+                                                        <p class="font-size-13 line-height mb-1">{{author}}</p>
+                                                    </div>
+
+                                                    <div class="price  d-flex align-items-center">
+                                                        <span class="pr-1 old-price">
+                                                            ${{oldPrice}}
+                                                        </span>
+
+                                                        <h6>${{price}}</h6>
+                                                    </div>
+
+                                                    <div class="iq-product-action">
+                                                        <a href="#!">
+                                                            <i class="ri-shopping-cart-2-fill text-primary"></i>
+                                                        </a>
+
+                                                        <a href="#!" class="ml-2">
+                                                            <i class="ri-heart-fill text-danger"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    {{else}}
+                    <h2>There isn't any books</h2>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

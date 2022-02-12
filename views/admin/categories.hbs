@@ -1,0 +1,53 @@
+<div class="categories">
+    <div class="content-page">
+
+
+        <div class="container">
+            <div class="row">
+                {{#if categories.length}}
+                {{#each categories}}
+                <div class="col-4">
+                    <div class="alert alert-success">
+                        <a href="/admin/category/{{id}}" class="iq-alert-text">{{name}}</a>
+                    </div>
+                </div>
+                {{/each}}
+                {{else}}
+                <h2>Category is empty</h2>
+                {{/if}}
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <form action="/admin/category/add" method="POST" class="mt-4 form-text">
+                        <div class="form-group">
+                            <label for="name">Category name</label>
+                            <input type="text" class="form-control mb-0" id="name" placeholder="Category name"
+                                name="name">
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Add category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
