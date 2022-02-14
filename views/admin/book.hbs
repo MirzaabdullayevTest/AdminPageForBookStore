@@ -1,0 +1,66 @@
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                    <div class="iq-card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Books Description</h4>
+                    </div>
+                    <div class="iq-card-body pb-0">
+                        <div class="description-contens align-items-top row">
+                            <div class="col-md-6">
+                                <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+                                    <div class="iq-card-body p-0">
+                                        <div class="row align-items-center">
+                                            <div class="col-12">
+                                                <ul id="description-slider"
+                                                    class="list-inline p-0 m-0  d-flex align-items-center">
+                                                    <li>
+                                                        <a href="javascript:void(0);">
+                                                            <img src="/images/{{book.img}}"
+                                                                class="img-fluid w-100 rounded" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
+                                    <div class="iq-card-body p-0">
+                                        <h3 class="mb-3">{{book.name}}</h3>
+                                        <div class="price d-flex align-items-center font-weight-500 mb-2">
+                                            <span class="font-size-20 pr-2 old-price">${{book.oldPrice}}</span>
+                                            <span class="font-size-24 text-dark">${{book.price}}</span>
+                                        </div>
+                                        <div class="mb-3 d-block">
+                                            <span class="font-size-20 text-warning">
+                                                <i class="fa fa-star mr-1"></i>
+                                                <i class="fa fa-star mr-1"></i>
+                                                <i class="fa fa-star mr-1"></i>
+                                                <i class="fa fa-star mr-1"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <span
+                                            class="text-dark mb-4 pb-4 iq-border-bottom d-block">{{book.textarea}}</span>
+                                        <div class="text-primary mb-4">Author: <span
+                                                class="text-body">{{book.author}}</span>
+                                        </div>
+                                        <div class="mb-4 d-flex align-items-center">
+                                            <a href="#" class="btn btn-primary view-more mr-2">Edit book</a>
+                                            <a href="book-pdf.html" class="btn btn-danger view-more mr-2">Delete
+                                                book</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

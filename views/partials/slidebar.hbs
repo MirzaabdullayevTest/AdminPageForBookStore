@@ -25,8 +25,13 @@
                             class="las la-home iq-arrow-left"></i><span>Shop</span><i
                             class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="dashboard" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
+                        {{#if admin}}
                         <li><a href="/admin/category"><i class="ri-function-line"></i>Category Page</a></li>
                         <li><a href="/admin/book"><i class="ri-function-line"></i>Book Page</a></li>
+                        {{else}}
+                        <li><a href="/category"><i class="ri-function-line"></i>Category Page</a></li>
+                        <li><a href="/book"><i class="ri-function-line"></i>Book Page</a></li>
+                        {{/if}}
                     </ul>
                 </li>
             </ul>

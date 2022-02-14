@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const Category = require('../models/Category');
 const Book = require('../models/Book');
 const mongoose = require('mongoose')
+const upload = require('../middleware/fileUpload')
 
 /* GET users listing. */
 router.get('/', auth, function (req, res, next) {
@@ -55,30 +56,47 @@ router.post('/category/add', auth, async function (req, res, next) {
 router.get('/book', auth, async (req, res, next) => {
   const categories = await Category.find()
   const books = await Book.find()
+
+  
   res.render('admin/books', {
     title: 'Books',
+    layout: 'layout',
     categories,
     books
   })
 })
 
-router.post('/book/add', auth, async (req, res, next) => {
+router.get('/book/:id', auth, async (req, res, next) => {
+  const book = await Book.findById(req.params.id)
+
+  console.log(book);
+
+  res.render('admin/book', {
+    title: book.name,
+    layout: 'layout',
+    book
+  })
+})
+
+router.post('/book/add', auth, upload.single('img'), async (req, res, next) => {
   const {
     name,
     price,
     oldPrice,
     author,
-    img,
-    categoryId
+    categoryId,
+    textarea
   } = req.body
+
 
   const book = new Book({
     name,
     price,
     oldPrice,
     author,
-    img,
-    categoryId
+    img: req.file.filename,
+    categoryId,
+    textarea
   })
 
   await book.save()

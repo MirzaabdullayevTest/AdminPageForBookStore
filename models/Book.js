@@ -20,6 +20,10 @@ const bookSchema = new Schema({
         type: String,
         required: true
     },
+    textarea: {
+        type: String,
+        required: true
+    },
     categoryId: {
         ref: 'categories',
         type: Schema.Types.ObjectId,
