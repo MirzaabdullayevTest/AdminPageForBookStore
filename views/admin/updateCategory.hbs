@@ -1,0 +1,21 @@
+<div class="categories">
+    <div class="content-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <form action="/admin/category/update/{{category.id}}" method="POST" class="mt-4 form-text">
+                        <div class="form-group">
+                            <label for="name">Category name</label>
+                            <input type="text" class="form-control mb-0" id="name" placeholder="Category name"
+                                value="{{category.name}}" name="name">
+
+                            {{!-- <input type="hidden" value="{{category.id}}" name="id"> --}}
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Update category</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

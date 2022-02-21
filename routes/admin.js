@@ -4,7 +4,8 @@ const auth = require('../middleware/auth');
 const Category = require('../models/Category');
 const Book = require('../models/Book');
 const mongoose = require('mongoose')
-const upload = require('../middleware/fileUpload')
+const upload = require('../middleware/fileUpload');
+const fileRemove = require('../middleware/fileRemove');
 
 /* GET users listing. */
 router.get('/', auth, function (req, res, next) {
@@ -20,7 +21,8 @@ router.get('/category', auth, async function (req, res, next) {
   res.render('admin/categories', {
     layout: 'layout',
     title: "Category",
-    categories
+    categories,
+    alert: req.flash('alert')
   })
 })
 
@@ -57,7 +59,7 @@ router.get('/book', auth, async (req, res, next) => {
   const categories = await Category.find()
   const books = await Book.find()
 
-  
+
   res.render('admin/books', {
     title: 'Books',
     layout: 'layout',
@@ -103,4 +105,96 @@ router.post('/book/add', auth, upload.single('img'), async (req, res, next) => {
   res.redirect('/admin/book')
 })
 
+router.get('/category/remove/:id', auth, async (req, res, next) => {
+  try {
+    await Category.findByIdAndDelete(req.params.id, (err) => {
+      if (err) {
+        throw new Error
+      } else {
+        req.flash('alert', 'Success deleted')
+        res.redirect('/admin/category')
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.get('/category/update/:id', auth, async (req, res, next) => {
+  const category = await Category.findById(req.params.id)
+  res.render('admin/updateCategory', {
+    title: category.name,
+    category
+  })
+})
+
+router.post('/category/update/:id', auth, async (req, res, next) => {
+  try {
+
+    await Category.findByIdAndUpdate(req.params.id, { name: req.body.name }, (err) => {
+      if (err) {
+        throw new Error
+      } else {
+        req.flash('successUpdate', 'Updated successfull')
+        res.redirect('/admin/category')
+      }
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.get('/book/remove/:id', auth, async (req, res, next) => {
+  try {
+    const book = await Book.findById(req.params.id)
+
+    await Book.findByIdAndDelete(req.params.id, (err) => {
+      if (err) {
+        throw new Error
+      } else {
+        fileRemove(book.img)
+        console.log('Book removed');
+        res.redirect('/admin/book')
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.get('/book/update/:id', auth, async (req, res, next) => {
+  const book = await Book.findById(req.params.id)
+  const categories = await Category.find()
+  res.render('admin/bookUpdate', {
+    title: book.name,
+    book,
+    categories
+  })
+})
+
+router.post('/book/update/:id', auth, upload.single('img'), async (req, res, next) => {
+  try {
+    const oldBook = await Book.findById(req.params.id)
+    const book = req.body
+
+    if (req.file) {
+      fileRemove(oldBook.img)
+      book.img = req.file.filename
+    } else {
+      book.img = oldBook.img
+    }
+
+    await Book.findByIdAndUpdate(req.params.id, book, (err) => {
+      if (err) {
+        throw new Error
+      } else {
+        res.redirect('/admin/book')
+      }
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+})
 module.exports = router;

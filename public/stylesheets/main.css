@@ -41,3 +41,36 @@
     background-color: green;
     color: #fff;
 }
+
+.trash {
+    color: red;
+    font-size: 30px;
+}
+
+.pen {
+    color: blue;
+    font-size: 30px;
+}
+
+.trash:hover {
+    color: red;
+}
+
+.pen:hover {
+    color: blue;
+}
+
+.form-group label {
+    color: #000;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group .form_img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}

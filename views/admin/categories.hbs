@@ -1,7 +1,8 @@
 <div class="categories">
     <div class="content-page">
-
-
+        {{#if alert}}
+        <p class="alert alert-success">{{alert}}</p>
+        {{/if}}
         <div class="container">
             <div class="row">
                 {{#if categories.length}}
@@ -9,6 +10,9 @@
                 <div class="col-4">
                     <div class="alert alert-success">
                         <a href="/admin/category/{{id}}" class="iq-alert-text">{{name}}</a>
+
+                        <a href="/admin/category/remove/{{id}}" class="trash"><i class="las la-trash-alt"></i></a>
+                        <a href="/admin/category/update/{{id}}" class="pen"><i class="las la-pen"></i></a>
                     </div>
                 </div>
                 {{/each}}
@@ -17,8 +21,6 @@
                 {{/if}}
             </div>
         </div>
-
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-8">

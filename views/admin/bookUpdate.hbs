@@ -1,0 +1,63 @@
+<div class="content-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form action="/admin/book/update/{{book.id}}" method="POST" class="mt-4 form-text"
+                    enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Book name</label>
+                        <input type="text" class="form-control mb-0" id="name" placeholder="Book name" name="name"
+                            value="{{book.name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Book price</label>
+                        <input type="number" class="form-control mb-0" id="price" placeholder="Book price" name="price"
+                            value="{{book.price}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="oldPrice">Book old price</label>
+                        <input type="number" class="form-control mb-0" id="oldPrice" placeholder="Book old price"
+                            name="oldPrice" value="{{book.oldPrice}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Book author</label>
+                        <input type="text" class="form-control mb-0" id="author" placeholder="Book author" name="author"
+                            value="{{book.author}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img">Book img</label>
+                        <input type="file" class="form-control mb-0" id="img" placeholder="Book img" name="img"
+                            value="{{book.img}}">
+
+                        <img src="/images/{{book.img}}" class="form_img" alt="{{book.img}}" width="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textarea">Book info</label>
+                        <textarea class="form-control mb-0" id="textarea" name="textarea" cols="30" rows="10"
+                            style="resize: none;">{{book.textarea}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoryId">Book category</label>
+                        <select class="form-control mb-3" id="categoryId" placeholder="Book category" name="categoryId">
+                            {{#if categories.length}}
+                            {{#each categories}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                            {{else}}
+                            <option value="null">Empty</option>
+                            {{/if}}
+                        </select>
+                    </div>
+
+                    {{!-- <input type="hidden" name="id" value="{{book.id}}"> --}}
+                    <button class="btn btn-primary" type="submit">Update book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
