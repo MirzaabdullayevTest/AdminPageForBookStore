@@ -12,6 +12,10 @@ const adminSchema = new Schema({
     img: {
         type: String,
     },
+    typeAdmin: {
+        type: String, // lavozimi
+        required: true
+    },
     password: {
         type: String,
         required: true,

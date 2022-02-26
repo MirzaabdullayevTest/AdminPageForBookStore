@@ -31,8 +31,11 @@
 
                                 <div class="sign-info text-center">
                                     <button type="submit" class="btn btn-white d-block w-100 mb-2">Sign in</button>
+
+                                    {{#if isAdmin}}
                                     <span class="text-white white-color d-inline-block line-height-2">Don't have an
                                         account? <a href="/auth/register" class="text-white">Sign up</a></span>
+                                    {{/if}}
                                 </div>
                             </form>
                         </div>

@@ -6,16 +6,27 @@
         <div class="container">
             <div class="row">
                 {{#if categories.length}}
+                {{#if isAdmin}}
                 {{#each categories}}
                 <div class="col-4">
                     <div class="alert alert-success">
                         <a href="/admin/category/{{id}}" class="iq-alert-text">{{name}}</a>
-
                         <a href="/admin/category/remove/{{id}}" class="trash"><i class="las la-trash-alt"></i></a>
                         <a href="/admin/category/update/{{id}}" class="pen"><i class="las la-pen"></i></a>
                     </div>
                 </div>
                 {{/each}}
+                {{else}}
+                {{#each categories}}
+                <div class="col-4">
+                    <div class="alert alert-success">
+                        <a href="/admin/category/{{id}}" class="iq-alert-text">{{name}}</a>
+
+                        <a href="/admin/category/update/{{id}}" class="pen"><i class="las la-pen"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+                {{/if}}
                 {{else}}
                 <h2>Category is empty</h2>
                 {{/if}}

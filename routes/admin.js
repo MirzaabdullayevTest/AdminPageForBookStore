@@ -6,9 +6,12 @@ const Book = require('../models/Book');
 const mongoose = require('mongoose')
 const upload = require('../middleware/fileUpload');
 const fileRemove = require('../middleware/fileRemove');
+const isAdmin = require('../middleware/isAdmin');
 
 /* GET users listing. */
 router.get('/', auth, function (req, res, next) {
+
+
   res.render('admin/index', {
     layout: 'layout',
     title: 'AdminPage'
@@ -17,11 +20,16 @@ router.get('/', auth, function (req, res, next) {
 
 router.get('/category', auth, async function (req, res, next) {
   const categories = await Category.find()
-  console.log(categories);
+
+  if (req.session.isAdmin) {
+    categories.isAdmin = true
+  }
+
   res.render('admin/categories', {
     layout: 'layout',
     title: "Category",
     categories,
+    isAdmin: req.session.admin.typeAdmin === 'admin' ? true : false,
     alert: req.flash('alert')
   })
 })
@@ -40,7 +48,8 @@ router.get('/category/:id', auth, async (req, res) => {
   // console.log(books);
   res.render('admin/category', {
     title: category.name,
-    books
+    books,
+
   })
 })
 
@@ -130,7 +139,6 @@ router.get('/category/update/:id', auth, async (req, res, next) => {
 
 router.post('/category/update/:id', auth, async (req, res, next) => {
   try {
-
     await Category.findByIdAndUpdate(req.params.id, { name: req.body.name }, (err) => {
       if (err) {
         throw new Error
@@ -197,4 +205,13 @@ router.post('/book/update/:id', auth, upload.single('img'), async (req, res, nex
     console.log(error);
   }
 })
+
+router.get('/workers', isAdmin, auth, (req, res, next) => {
+  res.render('auth/register', {
+    title: 'Workers'
+  })
+})
+
+
+
 module.exports = router;

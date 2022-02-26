@@ -2,14 +2,21 @@ const express = require('express');
 const Admin = require('../models/Admin');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
+const isAdmin = require('../middleware/isAdmin')
 
 /* GET users listing. */
-router.get('/login', function (req, res, next) {
+router.get('/login', async function (req, res, next) {
+    const isAdmin = await Admin.findOne({ typeAdmin: 'admin' })  // true
+
+    req.session.isAdmin = !isAdmin  // agar admin bor bo'lsa isAdmin true tushadi va ! false qivoradi // agar admin yo'q unda false tushadi ! uni true qivoravi
+
+
     res.render('auth/login', {
         layout: 'auth',
         title: 'Login',
         loginError: req.flash('loginError'),
-        success: req.flash('success')
+        success: req.flash('success'),
+        isAdmin: !isAdmin  // false
     });
 });
 
@@ -25,6 +32,7 @@ router.post('/login', async function (req, res, next) {
             if (areSame) {
                 req.session.isAuthen = true
                 req.session.admin = candidate
+                req.session.isAdmin = candidate.typeAdmin === 'admin' ? true : false
                 req.session.save((err) => {
                     if (err) {
                         throw new Error
@@ -47,7 +55,7 @@ router.post('/login', async function (req, res, next) {
     }
 })
 
-router.get('/register', function (req, res, next) {
+router.get('/register', isAdmin, function (req, res, next) {
     res.render('auth/register', {
         layout: 'auth',
         title: 'Register',
@@ -57,7 +65,7 @@ router.get('/register', function (req, res, next) {
 
 router.post('/register', async (req, res, next) => {
     try {
-        const { name, email, password, img } = req.body
+        const { name, email, password, img, typeAdmin } = req.body
         // password // 123456
         const candidate = await Admin.findOne({ email })
 
@@ -67,7 +75,7 @@ router.post('/register', async (req, res, next) => {
         } else {
             const hashPassword = await bcrypt.hash(password, 12)
             const admin = new Admin({
-                name, password: hashPassword, email, img
+                name, password: hashPassword, email, img, typeAdmin
             })
             await admin.save()
             req.flash('success', 'Admin is registreted successfull')

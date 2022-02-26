@@ -28,6 +28,9 @@
                         {{#if admin}}
                         <li><a href="/admin/category"><i class="ri-function-line"></i>Category Page</a></li>
                         <li><a href="/admin/book"><i class="ri-function-line"></i>Book Page</a></li>
+                            {{#if isAdmin}}
+                            <li><a href="/admin/workers"><i class="ri-function-line"></i>Workers Page</a></li>
+                            {{/if}}
                         {{else}}
                         <li><a href="/category"><i class="ri-function-line"></i>Category Page</a></li>
                         <li><a href="/book"><i class="ri-function-line"></i>Book Page</a></li>
